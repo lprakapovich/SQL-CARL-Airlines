@@ -1,0 +1,114 @@
+
+-- continents
+
+CREATE TABLE continents ( 
+    continent_id    VARCHAR2(25),
+    continent_name  VARCHAR2(25)    NOT NULL,
+    
+    CONSTRAINT continent_PK PRIMARY KEY (continent_id)
+);
+
+
+-- countries
+
+CREATE TABLE countries ( 
+    country_id    VARCHAR2(25),
+    country_name  VARCHAR2(25)  NOT NULL,
+    continent_id  VARCHAR2(25)  NOT NULL,
+    
+    CONSTRAINT country_PK PRIMARY KEY (country_id),
+    CONSTRAINT country_FK FOREIGN KEY (continent_id) REFERENCES continents(continent_id)
+);
+
+
+-- airports
+
+CREATE TABLE airports ( 
+    airport_id    INT,
+    airport_name  VARCHAR2(25)  NOT NULL,
+    city          VARCHAR2(25)  NOT NULL,
+    street        VARCHAR2(25),
+    postal_code   VARCHAR2(25),
+    country_id    VARCHAR2(25)  NOT NULL,
+    
+    CONSTRAINT airport_PK PRIMARY KEY (airport_id),
+    CONSTRAINT airport_FK FOREIGN KEY (country_id) REFERENCES countries(country_id)
+);
+
+
+-- flights
+
+CREATE TABLE flights ( 
+    flight_id           INT,
+    flight_duration     NUMBER(5,2)   NOT NULL,
+    departure_time      DATE          NOT NULL,
+    arrival_time        DATE          NOT NULL,
+    distance            NUMBER(10,2)  NOT NULL,
+    airport_from_id     INT           NOT NULL,
+    airport_to_id       INT           NOT NULL,
+    
+    CONSTRAINT flight_PK  PRIMARY KEY (flight_id),
+    CONSTRAINT flight_FK1 FOREIGN KEY (airport_from_id) REFERENCES airports(airport_id),
+    CONSTRAINT flight_FK2 FOREIGN KEY (airport_to_id)   REFERENCES airports(airport_id)    
+);
+
+
+-- seats
+
+CREATE TABLE seats ( 
+    seat_id           INT,
+    availability      VARCHAR2(25)  NOT NULL,
+    seat_class        VARCHAR2(25)  NOT NULL,
+    flight_id         INT           NOT NULL,
+
+    CONSTRAINT seat_PK PRIMARY KEY (seat_id),
+    CONSTRAINT seat_FK FOREIGN KEY (flight_id) REFERENCES flights(flight_id)
+);
+
+
+-- passengers
+
+CREATE TABLE passengers ( 
+    passenger_id        INT,
+    first_name          VARCHAR2(25)  NOT NULL,
+    last_name           VARCHAR2(25)  NOT NULL,
+    email_address       VARCHAR2(25)  NOT NULL,
+    phone               VARCHAR2(25)  NOT NULL,
+    city                VARCHAR2(25),
+    street              VARCHAR2(25),
+    postal_code         VARCHAR2(25),
+    passenger_type      VARCHAR2(25)  NOT NULL,
+    
+    CONSTRAINT passenger_PK PRIMARY KEY (passenger_id) 
+);
+
+
+-- reservations
+
+CREATE TABLE reservations ( 
+    reservation_id        INT,
+    state                 VARCHAR2(25) NOT NULL,
+    price                 NUMBER(6,2)  NOT NULL,
+    reservation_date      DATE         NOT NULL,
+    reservation_due_date  DATE,
+    seat_id               INT          NOT NULL,
+    passenger_id          INT          NOT NULL,
+    
+    CONSTRAINT reservation_PK  PRIMARY KEY (reservation_id),
+    CONSTRAINT reservation_FK1 FOREIGN KEY (seat_id)      REFERENCES seats(seat_id),
+    CONSTRAINT reservation_FK2 FOREIGN KEY (passenger_id) REFERENCES passengers(passenger_id)    
+);
+
+
+-- discounts
+
+CREATE TABLE discounts ( 
+    discount_id         INT,
+    discount_percent    NUMBER(5,2)  NOT NULL,
+    discount_type       VARCHAR2(25) NOT NULL,
+    reservation_id      INT          NOT NULL,
+    
+    CONSTRAINT discount_PK PRIMARY KEY (discount_id),
+    CONSTRAINT discount_FK FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
+);
+
