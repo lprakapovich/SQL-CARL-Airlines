@@ -584,8 +584,6 @@ INSERT INTO passengers VALUES
 
 -- reservations
 
-SELECT * FROM reservations;
-
 INSERT INTO reservations VALUES
     (1, 'waiting for approval', 156.32, TO_DATE('06/12/2020', 'DD/MM/YYYY'), TO_DATE('09/12/2020', 'DD/MM/YYYY'), '5.2', 5);
     
