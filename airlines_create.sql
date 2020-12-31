@@ -24,11 +24,10 @@ CREATE TABLE countries (
 -- airports
 
 CREATE TABLE airports ( 
-    airport_id    INT,
-    airport_name  VARCHAR2(25)  NOT NULL,
+    airport_id    VARCHAR2(25),
+    airport_name  VARCHAR2(50)  NOT NULL,
     city          VARCHAR2(25)  NOT NULL,
-    street        VARCHAR2(25),
-    postal_code   VARCHAR2(25),
+    street        VARCHAR2(50),
     country_id    VARCHAR2(25)  NOT NULL,
     
     CONSTRAINT airport_PK PRIMARY KEY (airport_id),
@@ -44,8 +43,8 @@ CREATE TABLE flights (
     departure_time      DATE          NOT NULL,
     arrival_time        DATE          NOT NULL,
     distance            NUMBER(10,2)  NOT NULL,
-    airport_from_id     INT           NOT NULL,
-    airport_to_id       INT           NOT NULL,
+    airport_from_id     VARCHAR2(25)  NOT NULL,
+    airport_to_id       VARCHAR2(25)  NOT NULL,
     
     CONSTRAINT flight_PK  PRIMARY KEY (flight_id),
     CONSTRAINT flight_FK1 FOREIGN KEY (airport_from_id) REFERENCES airports(airport_id),
@@ -56,7 +55,7 @@ CREATE TABLE flights (
 -- seats
 
 CREATE TABLE seats ( 
-    seat_id           INT,
+    seat_id           VARCHAR2(25),
     availability      VARCHAR2(25)  NOT NULL,
     seat_class        VARCHAR2(25)  NOT NULL,
     flight_id         INT           NOT NULL,
@@ -91,7 +90,7 @@ CREATE TABLE reservations (
     price                 NUMBER(6,2)  NOT NULL,
     reservation_date      DATE         NOT NULL,
     reservation_due_date  DATE,
-    seat_id               INT          NOT NULL,
+    seat_id               VARCHAR2(25) NOT NULL,
     passenger_id          INT          NOT NULL,
     
     CONSTRAINT reservation_PK  PRIMARY KEY (reservation_id),
