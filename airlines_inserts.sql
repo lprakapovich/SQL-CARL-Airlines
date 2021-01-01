@@ -619,6 +619,14 @@ INSERT INTO reservations VALUES
     
 INSERT INTO reservations VALUES
     (12, 'cancelled', 300.0, TO_DATE('09/12/2020', 'DD/MM/YYYY'), NULL, '14.2', 5);
+	
+--new ones
+	
+INSERT INTO reservations VALUES
+    (13, 'cancelled', 122.0, TO_DATE('06/11/2020', 'DD/MM/YYYY'), TO_DATE('09/12/2020', 'DD/MM/YYYY'), '5.2', 9);
+	
+INSERT INTO reservations VALUES
+    (14, 'approved', 78.20, TO_DATE('30/12/2020', 'DD/MM/YYYY'), TO_DATE('09/01/2021', 'DD/MM/YYYY'), '21.3', 5);
 
 -- discounts
 
@@ -654,3 +662,7 @@ INSERT INTO discounts VALUES
 
 INSERT INTO discounts VALUES
     (10, 1.0, 'happy hours', 1);
+	
+--new 
+INSERT INTO discounts VALUES
+    (11, 10.0, 'happy hours', 5);

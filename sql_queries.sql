@@ -123,3 +123,46 @@ SELECT '$' || ROUND(AVG(r.price), 2) AS AVG_TICKET_PRICE
     JOIN flights f
     ON s.flight_id = f.flight_id
     WHERE f.distance BETWEEN 5000 AND 15000;
+	
+--10) Display customers that have made the most reservations (and did not cancel)
+
+SELECT p.first_name, p.last_name, p.email_address, p.phone, COUNT(r.passenger_id) AS "Number of Reservations"
+FROM passengers p
+JOIN reservations r ON p.passenger_id = r.passenger_id
+WHERE r.state <> 'cancelled'
+GROUP BY p.first_name, p.last_name, p.email_address, p.phone
+HAVING COUNT(r.passenger_id) = 
+    (SELECT MAX(my_count)
+     FROM (
+        SELECT COUNT(passenger_id) AS my_count
+        FROM reservations
+        GROUP BY passenger_id));
+        
+--11) Display all reservations for a given customer
+
+SELECT r.state, r.price, r.reservation_date, r.seat_id
+FROM reservations r 
+JOIN passengers p ON r.passenger_id = p.passenger_id
+WHERE p.passenger_id = 5;
+
+--12)Which countries are chosen by gold passengers? (I wanted the most popular but failed miserably)
+
+SELECT a.country_id 
+FROM airports a
+JOIN flights f ON f.airport_to_id = a.airport_id
+JOIN seats s ON f.flight_id = s.flight_id
+JOIN reservations r ON r.seat_id = s.seat_id
+JOIN passengers p ON r.passenger_id = p.passenger_id
+WHERE p.passenger_type = 'Gold';
+
+--13) Display all reservations from last month
+SELECT * FROM reservations
+WHERE reservation_date BETWEEN add_months(trunc(sysdate,'mm'),-1) and (last_day(add_months(trunc(sysdate,'mm'),-1))+1);
+    
+--14) select customers with the most times they got a discount ???
+ 
+SELECT p.first_name, p.last_name, d.discount_percent, d.discount_type, COUNT(DISTINCT p.passenger_id) AS "Number of Discounts"
+FROM passengers p
+JOIN reservations r ON r.passenger_id = p.passenger_id
+JOIN discounts d ON d.reservation_id = r.reservation_id
+GROUP BY p.first_name, p.last_name, d.discount_percent, d.discount_type;
