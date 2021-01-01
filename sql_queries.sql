@@ -156,13 +156,19 @@ JOIN passengers p ON r.passenger_id = p.passenger_id
 WHERE p.passenger_type = 'Gold';
 
 --13) Display all reservations from last month
+
 SELECT * FROM reservations
 WHERE reservation_date BETWEEN add_months(trunc(sysdate,'mm'),-1) and (last_day(add_months(trunc(sysdate,'mm'),-1))+1);
     
---14) select customers with the most times they got a discount ???
+--14) Select customers with the most times they got a discount.
  
-SELECT p.first_name, p.last_name, d.discount_percent, d.discount_type, COUNT(DISTINCT p.passenger_id) AS "Number of Discounts"
+SELECT p.passenger_id, p.first_name, p.last_name, COUNT(d.discount_id) AS NUMBER_OF_DISCOUNTS
 FROM passengers p
-JOIN reservations r ON r.passenger_id = p.passenger_id
-JOIN discounts d ON d.reservation_id = r.reservation_id
-GROUP BY p.first_name, p.last_name, d.discount_percent, d.discount_type;
+LEFT JOIN reservations r 
+ON p.passenger_id = r.passenger_id
+LEFT JOIN discounts d 
+ON r.reservation_id = d.reservation_id
+GROUP BY p.passenger_id, p.first_name, p.last_name
+ORDER BY p.passenger_id;
+
+
