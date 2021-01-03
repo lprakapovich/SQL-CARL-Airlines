@@ -132,3 +132,40 @@ BEGIN
         WHEN NO_DATA_FOUND
         THEN dbms_output.put_line('Such reservation id does not exists');
 END;
+
+
+
+--6. procedure to query airport by airport id
+
+
+CREATE OR REPLACE PROCEDURE query_airport (
+     p_airport_id     IN  airports.airport_id%TYPE,
+     p_airport_name   OUT airports.airport_name%TYPE,
+     p_airport_city   OUT airports.city%TYPE ) 
+IS
+BEGIN
+    SELECT airport_name, city 
+        INTO p_airport_name, p_airport_city
+        FROM airports
+        WHERE airport_id = p_airport_id;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No such airport id in the  airlines database.');
+END query_airport;
+
+
+	--Testing
+
+DECLARE
+     v_airport_id     airports.airport_id%TYPE;
+     v_airport_name   airports.airport_name%TYPE;
+     v_airport_city   airports.city%TYPE;
+BEGIN
+    v_airport_id := 'CDG';
+    query_airport(v_airport_id, v_airport_name, v_airport_city);
+    DBMS_OUTPUT.PUT_LINE('Airport ID: ' || v_airport_id);
+    DBMS_OUTPUT.PUT_LINE('Airport Name: ' || v_airport_name);
+    DBMS_OUTPUT.PUT_LINE('City: ' || v_airport_city);    
+END;
+
