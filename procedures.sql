@@ -194,3 +194,26 @@ END;
 
 EXECUTE display_pass_detail_by_type('Normal', 1);
 
+--8 procedure that displays available seats on a given flight by class
+CREATE OR REPLACE PROCEDURE display_available_seats (c seats.seat_class%TYPE, flight flights.flight_id%TYPE) AS
+    
+    CURSOR c_seats (c seats.seat_class%TYPE, flight flights.flight_id%TYPE) IS
+        SELECT seat_id
+        FROM seats
+        WHERE availability = 'available' AND seat_class = c AND flight_id = flight;
+        
+    v_seat_record   c_seats%ROWTYPE;
+        
+BEGIN
+    OPEN c_seats(c, flight);
+        LOOP 
+            FETCH c_seats INTO v_seat_record;
+            EXIT WHEN c_seats%NOTFOUND;
+            dbms_output.put_line(v_seat_record.seat_id);
+        END LOOP;
+        dbms_output.put_line(c_seats%ROWCOUNT || ' available seats on the flight number: ' || flight || ' in: ' || c);
+    CLOSE c_seats;
+END;
+
+EXECUTE display_available_seats('first class', 1);
+
