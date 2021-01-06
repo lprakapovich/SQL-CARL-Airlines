@@ -169,3 +169,28 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('City: ' || v_airport_city);    
 END;
 
+--7 procedure that displays passenger details of a given passenger type, on a given flight id
+CREATE OR REPLACE PROCEDURE display_pass_detail_by_type (pass_type passengers.passenger_type%TYPE, flight flights.flight_id%TYPE) AS
+
+    CURSOR c_pass_details (pass_type passengers.passenger_type%TYPE, flight flights.flight_id%TYPE) IS
+        SELECT p.first_name, p.last_name, p.email_address, p.phone
+        FROM passengers p 
+        JOIN reservations r ON p.passenger_id = r.passenger_id
+        JOIN seats s ON s.seat_id = r.seat_id
+        WHERE p.passenger_type = pass_type AND s.flight_id = flight AND r.state <> 'cancelled';
+        
+    v_pass_record   c_pass_details%ROWTYPE;
+        
+BEGIN
+    OPEN c_pass_details(pass_type, flight);
+        LOOP 
+            FETCH c_pass_details INTO v_pass_record;
+            EXIT WHEN c_pass_details%NOTFOUND;
+            dbms_output.put_line(v_pass_record.first_name ||' ' || v_pass_record.last_name ||' ' || v_pass_record.email_address ||' ' || v_pass_record.phone ||' ');
+        END LOOP;
+        dbms_output.put_line(c_pass_details%ROWCOUNT || ' passengers on the flight number: ' || flight);
+    CLOSE c_pass_details;
+END;
+
+EXECUTE display_pass_detail_by_type('Normal', 1);
+
