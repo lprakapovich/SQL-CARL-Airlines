@@ -51,8 +51,7 @@ END calc_total_discount_percent;
 
 
 
-	-- Testing
-
+-- Testing
 SELECT reservation_id, calc_total_discount_percent(reservation_id) || '%' AS TOTAL_DISCOUNT
     FROM reservations;
 
@@ -81,8 +80,50 @@ BEGIN
 END calc_ticket_price;
 
 
-
-	-- Testing
-
+-- Testing
 SELECT reservation_id, price, calc_total_discount_percent(reservation_id) || '%' AS TOTAL_DISCOUNT, calc_ticket_price(reservation_id) AS TICKET_PRICE
     FROM reservations;
+
+
+
+--5) Checking if a given passenger is a gold client
+
+CREATE OR REPLACE FUNCTION check_if_gold_client
+    (p_passenger_id passengers.passenger_id%TYPE)
+RETURN BOOLEAN
+IS
+    v_type    passengers.passenger_type%TYPE;
+BEGIN
+    SELECT passenger_type
+    INTO v_type
+    FROM passengers
+    WHERE passenger_id = p_passenger_id;
+    
+    IF (v_type = 'Gold') THEN
+        RETURN TRUE;
+    ELSE 
+        RETURN FALSE;
+    END IF;
+END check_if_gold_client;
+
+
+
+--6) Checking if a given passenger is a silver client
+
+CREATE OR REPLACE FUNCTION check_if_silver_client
+    (p_passenger_id passengers.passenger_id%TYPE)
+RETURN BOOLEAN
+IS
+    v_type    passengers.passenger_type%TYPE;
+BEGIN
+    SELECT passenger_type
+    INTO v_type
+    FROM passengers
+    WHERE passenger_id = p_passenger_id;
+    
+    IF (v_type = 'Silver') THEN
+        RETURN TRUE;
+    ELSE 
+        RETURN FALSE;
+    END IF;
+END check_if_silver_client;

@@ -35,8 +35,13 @@ BEGIN
 
 END add_reservation;
 
+
+-- an exception is thrown because the passenger with id equal to 150 does not exist
 EXECUTE add_reservation('approved', 155.0, TO_DATE('03/12/2020', 'DD/MM/YYYY'), TO_DATE('05/12/2020', 'DD/MM/YYYY'), '15.2', 150);
+
+-- everything works
 EXECUTE add_reservation('approved', 155.0, TO_DATE('03/12/2020', 'DD/MM/YYYY'), TO_DATE('05/12/2020', 'DD/MM/YYYY'), '21.2', 1);
+
 
 
 -- 2. adding a new passenger
@@ -63,6 +68,14 @@ BEGIN
         dbms_output.put_line('Such email is already registered');
 
 END add_passenger;
+
+
+-- everything works
+EXECUTE add_passenger('Julia', 'Perez', 'julia.perez.sp', '43-54353-534', 'Madrid');
+
+-- an exception is thrown about email that already exists in the database
+EXECUTE add_passenger('Julia', 'Perez', 'julia.perez.sp', '43-54353-534', 'Madrid');
+
 
 
 -- 3. deleting an existing passenger
