@@ -13,9 +13,8 @@ CREATE OR REPLACE PACKAGE passengers_package IS
         p_passenger_city        passengers.city%TYPE
     );
 
-    -- procedure display_passengers_by_flight_and_reservation_type;
-
-    -- procedure display_passsengers_by_flight_id;
+    procedure display_passsengers_by_flight_id(
+    p_flight_id flights.flight_id%TYPE);
 
 END;
 
@@ -42,6 +41,9 @@ v_default_type  passengers.passenger_type%TYPE := 'Normal';
             dbms_output.put_line('Such email is already registered');
         END;
 
+
+
+
     procedure display_passengers_by_type_and_city(
         p_passenger_type        passengers.passenger_type%TYPE,
         p_passenger_city        passengers.city%TYPE)
@@ -64,6 +66,32 @@ v_default_type  passengers.passenger_type%TYPE := 'Normal';
 
         IF v_passenger_rec_tab.COUNT = 0 THEN
         DBMS_OUTPUT.PUT_LINE('Passenger not found');
+        END IF;
+    END;
+
+
+    procedure display_passsengers_by_flight_id(
+    p_flight_id flights.flight_id%TYPE) IS
+
+    TYPE t_passenger_rec IS TABLE OF passengers%ROWTYPE
+        INDEX BY BINARY_INTEGER;
+        v_passenger_rec_tab t_passenger_rec;
+    BEGIN
+         FOR passenger_rec IN (
+            SELECT p.* FROM passengers p
+            JOIN reservations r ON p.passenger_id = r.passenger_id
+            JOIN seats s ON s.seat_id = r.seat_id
+            JOIN flights f ON f.flight_id = s.flight_id
+            WHERE f.flight_id = p_flight_id)
+
+        LOOP
+            v_passenger_rec_tab(passenger_rec.passenger_id) := passenger_rec;
+            DBMS_OUTPUT.PUT_LINE(v_passenger_rec_tab(passenger_rec.passenger_id).first_name || ' ' ||
+            v_passenger_rec_tab(passenger_rec.passenger_id).last_name);
+        END LOOP;
+
+        IF v_passenger_rec_tab.COUNT = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Passengers not found');
         END IF;
     END;
 END;
