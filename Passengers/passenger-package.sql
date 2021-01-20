@@ -14,8 +14,11 @@ CREATE OR REPLACE PACKAGE passengers_package IS
     );
 
     procedure display_passsengers_by_flight_id(
-    p_flight_id flights.flight_id%TYPE);
+        p_flight_id flights.flight_id%TYPE);
 
+    procedure update_passenger_type(
+        p_new_type passengers.passenger_type%TYPE,
+        p_passenger_id passengers.passenger_id%TYPE);
 END;
 
 CREATE OR REPLACE PACKAGE BODY passengers_package IS
@@ -94,4 +97,28 @@ v_default_type  passengers.passenger_type%TYPE := 'Normal';
         DBMS_OUTPUT.PUT_LINE('Passengers not found');
         END IF;
     END;
+
+    procedure update_passenger_type(
+        p_new_type passengers.passenger_type%TYPE,
+        p_passenger_id passengers.passenger_id%TYPE) IS
+
+    CHECK_CONSTRAINT_VIOLATED EXCEPTION;
+    PRAGMA EXCEPTION_INIT(CHECK_CONSTRAINT_VIOLATED, -2290);
+
+    BEGIN
+        UPDATE passengers
+        SET passenger_type = p_new_type
+        WHERE passenger_id = p_passenger_id;
+
+    EXCEPTION
+        WHEN CHECK_CONSTRAINT_VIOLATED THEN
+        DBMS_OUTPUT.PUT_LINE('INSERT failed due to check constraint violation on passenger type');
+    END;
 END;
+
+
+-- type update success
+EXECUTE passengers_package.update_passenger_type('Silver', 13);
+
+-- type update failure
+EXECUTE passengers_package.update_passenger_type(12, 13);
