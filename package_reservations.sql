@@ -77,11 +77,15 @@ FOR EACH ROW
 DECLARE
 
 BEGIN
-    IF (:NEW.state = 'approved' OR :NEW.state = 'waiting for approval') THEN
+    IF (:NEW.state = 'approved') THEN
         UPDATE seats
-        SET availability = 'reserved'
+        SET availability = 'unavailable'
         WHERE seat_id = :NEW.seat_id;
     ELSIF (:NEW.state = 'cancelled') THEN
+        UPDATE seats
+        SET availability = 'available'
+        WHERE seat_id = :NEW.seat_id;
+    ELSIF (:NEW.state = 'waiting for approval') THEN
         UPDATE seats
         SET availability = 'reserved'
         WHERE seat_id = :NEW.seat_id;

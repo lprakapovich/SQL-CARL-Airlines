@@ -64,7 +64,7 @@ CREATE TABLE seats (
 
     CONSTRAINT seat_PK PRIMARY KEY (seat_id),
     CONSTRAINT seat_FK FOREIGN KEY (flight_id) REFERENCES flights(flight_id),
-    CONSTRAINT check_availability CHECK (availability IN ('available', 'reserved')),
+    CONSTRAINT check_availability CHECK (availability IN ('available', 'reserved', 'unavailable')),
     CONSTRAINT check_seat_calss   CHECK (seat_class IN ('business class', 'economy class', 'first class'))
 );
 
