@@ -17,7 +17,6 @@ CREATE OR REPLACE PACKAGE BODY reservations_pkg IS
     IS
         v_passenger               reservations.passenger_id%TYPE;
         v_seat_availability       seats.availability%TYPE;
-        v_id                      reservations.reservation_id%TYPE;
         seat_reserved_exception   EXCEPTION;
     BEGIN
       
@@ -29,14 +28,8 @@ CREATE OR REPLACE PACKAGE BODY reservations_pkg IS
         FROM seats
         WHERE seat_id = p_seat;
         
-        SELECT reservation_id INTO v_id
-        FROM reservations
-        WHERE reservation_id = ( SELECT MAX(reservation_id) FROM reservations );
-        
-        v_id := v_id + 1;
-
         IF (v_seat_availability = 'available') THEN
-            INSERT INTO reservations VALUES (v_id, p_status, p_price, p_date, p_seat, p_passenger);
+            INSERT INTO reservations VALUES (reservations_id_sequence.NEXTVAL, p_status, p_price, p_date, p_seat, p_passenger);
             DBMS_OUTPUT.PUT_LINE('inserted: ' || SQL%ROWCOUNT || ' row');
         ELSE 
             RAISE seat_reserved_exception;
@@ -50,6 +43,7 @@ CREATE OR REPLACE PACKAGE BODY reservations_pkg IS
      
     END add_reservation;
 END;
+
 
 SET SERVEROUTPUT ON;
 
