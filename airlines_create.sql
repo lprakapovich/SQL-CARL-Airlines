@@ -1,4 +1,5 @@
 
+
 -- continents
 
 CREATE TABLE continents ( 
@@ -55,13 +56,16 @@ CREATE TABLE flights (
 -- seats
 
 CREATE TABLE seats ( 
-    seat_id           VARCHAR2(25),
-    availability      VARCHAR2(25)  NOT NULL,
-    seat_class        VARCHAR2(25)  NOT NULL,
-    flight_id         INT           NOT NULL,
+    seat_id             INT,
+    num_in_plane        INT,
+    availability        VARCHAR2(25)  NOT NULL,
+    seat_class          VARCHAR2(25)  NOT NULL,
+    flight_id           INT           NOT NULL,
 
     CONSTRAINT seat_PK PRIMARY KEY (seat_id),
-    CONSTRAINT seat_FK FOREIGN KEY (flight_id) REFERENCES flights(flight_id)
+    CONSTRAINT seat_FK FOREIGN KEY (flight_id) REFERENCES flights(flight_id),
+    CONSTRAINT check_availability CHECK (availability IN ('available', 'reserved')),
+    CONSTRAINT check_seat_calss   CHECK (seat_class IN ('business class', 'economy class', 'first class'))
 );
 
 
@@ -78,7 +82,8 @@ CREATE TABLE passengers (
     postal_code         VARCHAR2(25),
     passenger_type      VARCHAR2(25)  NOT NULL,
     
-    CONSTRAINT passenger_PK PRIMARY KEY (passenger_id) 
+    CONSTRAINT passenger_PK PRIMARY KEY (passenger_id),
+    CONSTRAINT check_passenger_type CHECK (passenger_type IN ('Gold', 'Silver', 'Normal'))
 );
 
 
@@ -89,13 +94,13 @@ CREATE TABLE reservations (
     state                 VARCHAR2(25) NOT NULL,
     price                 NUMBER(6,2)  NOT NULL,
     reservation_date      DATE         NOT NULL,
-    reservation_due_date  DATE,
-    seat_id               VARCHAR2(25) NOT NULL,
+    seat_id               INT          NOT NULL,
     passenger_id          INT          NOT NULL,
     
     CONSTRAINT reservation_PK  PRIMARY KEY (reservation_id),
     CONSTRAINT reservation_FK1 FOREIGN KEY (seat_id)      REFERENCES seats(seat_id),
-    CONSTRAINT reservation_FK2 FOREIGN KEY (passenger_id) REFERENCES passengers(passenger_id)    
+    CONSTRAINT reservation_FK2 FOREIGN KEY (passenger_id) REFERENCES passengers(passenger_id),
+    CONSTRAINT check_state  CHECK (state IN ('waiting for approval', 'approved', 'cancelled'))
 );
 
 
@@ -108,6 +113,6 @@ CREATE TABLE discounts (
     reservation_id      INT          NOT NULL,
     
     CONSTRAINT discount_PK PRIMARY KEY (discount_id),
-    CONSTRAINT discount_FK FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
+    CONSTRAINT discount_FK FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id),
+    CONSTRAINT check_discount_type CHECK (discount_type IN ('silver client', 'gold client', '3d reservation', 'happy hours'))
 );
-
