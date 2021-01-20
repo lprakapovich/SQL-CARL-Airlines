@@ -1,5 +1,14 @@
 
 
+-- empty table storing data about reservations daily activity 
+--needed for the scheduler
+CREATE TABLE daily_reservations (
+    id NUMBER NOT NULL,
+    day DATE NOT NULL,
+    reservations_number NUMBER NOT NULL,
+    mean_income NUMBER NOT NULL
+);
+
 -- continents
 
 CREATE TABLE continents ( 
