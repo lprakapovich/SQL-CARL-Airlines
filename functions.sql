@@ -11,6 +11,7 @@ RETURN v_passenger_number;
 END;
 
 
+
 -- number of reservations for a given id, used to check if deletion is allowed
 create or replace FUNCTION passenger_reservations_number(
                         p_id IN passengers.passenger_id%TYPE)
@@ -86,44 +87,3 @@ SELECT reservation_id, price, calc_total_discount_percent(reservation_id) || '%'
 
 
 
---5) Checking if a given passenger is a gold client
-
-CREATE OR REPLACE FUNCTION check_if_gold_client
-    (p_passenger_id passengers.passenger_id%TYPE)
-RETURN BOOLEAN
-IS
-    v_type    passengers.passenger_type%TYPE;
-BEGIN
-    SELECT passenger_type
-    INTO v_type
-    FROM passengers
-    WHERE passenger_id = p_passenger_id;
-    
-    IF (v_type = 'Gold') THEN
-        RETURN TRUE;
-    ELSE 
-        RETURN FALSE;
-    END IF;
-END check_if_gold_client;
-
-
-
---6) Checking if a given passenger is a silver client
-
-CREATE OR REPLACE FUNCTION check_if_silver_client
-    (p_passenger_id passengers.passenger_id%TYPE)
-RETURN BOOLEAN
-IS
-    v_type    passengers.passenger_type%TYPE;
-BEGIN
-    SELECT passenger_type
-    INTO v_type
-    FROM passengers
-    WHERE passenger_id = p_passenger_id;
-    
-    IF (v_type = 'Silver') THEN
-        RETURN TRUE;
-    ELSE 
-        RETURN FALSE;
-    END IF;
-END check_if_silver_client;

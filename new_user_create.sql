@@ -37,6 +37,8 @@ GRANT CREATE PROCEDURE to airlines;
 GRANT CREATE VIEW to airlines;
 GRANT DROP ANY TABLE to airlines;
 GRANT ALTER USER to airlines;
+grant execute on DBMS_SCHEDULER to AIRLINES;
+grant create job to AIRLINES;
 
 
 --4) additional settings
