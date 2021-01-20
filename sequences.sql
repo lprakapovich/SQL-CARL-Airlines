@@ -1,7 +1,15 @@
-CREATE OR REPLACE PROCEDURE create_passenger_sequence
-IS
-    v_max_id NUMBER := 0;
-BEGIN
-    v_max_id := passenger_max_id;
-    EXECUTE IMMEDIATE 'CREATE SEQUENCE passenger_sequence START WITH ' || v_max_id || 'increment by 1';
-END;
+CREATE SEQUENCE discount_id_sequence
+    INCREMENT BY 1
+    START WITH 11;
+    
+CREATE SEQUENCE flight_id_sequence
+    INCREMENT BY 1
+    START WITH 21;
+
+CREATE SEQUENCE passenger_id_sequence
+    INCREMENT BY 1
+    START WITH 10;
+    
+CREATE SEQUENCE seat_id_sequence
+    INCREMENT BY 1
+    START WITH 65;
