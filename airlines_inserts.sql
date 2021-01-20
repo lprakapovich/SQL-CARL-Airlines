@@ -135,9 +135,6 @@ INSERT INTO airports VALUES
     
 INSERT INTO airports VALUES
     ('MXP', 'Milan Malpensa Airport', 'Milan', '21010 Ferno, Varese', 'IT');
-
-INSERT INTO airports VALUES
-    ('IST', 'Istanbul Airport', 'Istanbul', '34283 Arnavutköy', 'TU');
     
 INSERT INTO airports VALUES
     ('AYT', 'Antalya Airport', 'Antalya', '07230 Muratpaşa', 'TU');
@@ -254,200 +251,201 @@ INSERT INTO flights VALUES
 -- seats
 
 INSERT INTO seats VALUES
-    ('1.1', 'available', 'first class', 1);
+    (1, 1, 'available', 'first class', 1);
     
 INSERT INTO seats VALUES
-    ('1.2', 'available', 'first class', 1);
+    (2, 2, 'available', 'first class', 1);
     
 INSERT INTO seats VALUES
-    ('1.3', 'available', 'first class', 1);
+    (3, 3, 'available', 'first class', 1);
     
 INSERT INTO seats VALUES
-    ('1.4', 'available', 'business class', 1);
+    (4, 4, 'available', 'business class', 1);
     
 INSERT INTO seats VALUES
-    ('1.5', 'reserved', 'business class', 1);
+    (5, 5, 'reserved', 'business class', 1);
     
 INSERT INTO seats VALUES
-    ('1.6', 'available', 'business class', 1);
+    (6, 6, 'available', 'business class', 1);
     
 INSERT INTO seats VALUES
-    ('1.7', 'available', 'economy class', 1);
+    (7, 7, 'available', 'economy class', 1);
     
 INSERT INTO seats VALUES
-    ('1.8', 'reserved', 'economy class', 1);
+    (8, 8, 'reserved', 'economy class', 1);
     
 INSERT INTO seats VALUES
-    ('1.9', 'available', 'economy class', 1);
+    (9, 9, 'available', 'economy class', 1);
     
 INSERT INTO seats VALUES
-    ('1.10', 'unavailable', 'economy class', 1);
+    (10, 10, 'available', 'economy class', 1);
     
 INSERT INTO seats VALUES
-    ('2.1', 'available', 'first class', 2);
+    (11, 1, 'available', 'first class', 2);
     
 INSERT INTO seats VALUES
-    ('2.2', 'available', 'first class', 2);
+    (12, 2, 'available', 'first class', 2);
     
 INSERT INTO seats VALUES
-    ('2.3', 'available', 'first class', 2);
+    (13, 3, 'available', 'first class', 2);
     
 INSERT INTO seats VALUES
-    ('2.4', 'available', 'business class', 2);
+    (14, 4, 'available', 'business class', 2);
     
 INSERT INTO seats VALUES
-    ('2.5', 'available', 'business class', 2);
+    (15, 5, 'available', 'business class', 2);
     
 INSERT INTO seats VALUES
-    ('2.6', 'available', 'business class', 2);
-    
-INSERT INTO seats VALUES
-    ('2.7', 'unavailable', 'economy class', 2);
-    
-INSERT INTO seats VALUES
-    ('2.8', 'available', 'economy class', 2);
+    (16, 6, 'available', 'business class', 2);
 
 INSERT INTO seats VALUES
-    ('2.9', 'available', 'economy class', 2);
+    (17, 7, 'reserved', 'economy class', 2);
     
 INSERT INTO seats VALUES
-    ('2.10', 'available', 'economy class', 2);
+    (18, 8, 'available', 'economy class', 2);
+
+INSERT INTO seats VALUES
+    (19, 9, 'available', 'economy class', 2);
     
 INSERT INTO seats VALUES
-    ('3.1', 'available', 'first class', 3);
+    (20, 10, 'available', 'economy class', 2);
     
 INSERT INTO seats VALUES
-    ('3.2', 'reserved', 'first class', 3);
+    (21, 1, 'available', 'first class', 3);
     
 INSERT INTO seats VALUES
-    ('3.3', 'available', 'first class', 3);
+    (22, 2, 'reserved', 'first class', 3);
     
 INSERT INTO seats VALUES
-    ('3.4', 'available', 'business class', 3);
+    (23, 3, 'available', 'first class', 3);
     
 INSERT INTO seats VALUES
-    ('3.5', 'available', 'business class', 3);
+    (24, 4, 'available', 'business class', 3);
     
 INSERT INTO seats VALUES
-    ('3.6', 'available', 'business class', 3);
+    (25, 5, 'available', 'business class', 3);
     
 INSERT INTO seats VALUES
-    ('3.7', 'available', 'economy class', 3);
+    (26, 6, 'available', 'business class', 3);
     
 INSERT INTO seats VALUES
-    ('3.8', 'available', 'economy class', 3);
+    (27, 7, 'available', 'economy class', 3);
     
 INSERT INTO seats VALUES
-    ('3.9', 'available', 'economy class', 3);
+    (28, 8, 'available', 'economy class', 3);
     
 INSERT INTO seats VALUES
-    ('3.10', 'available', 'economy class', 3);
+    (29, 9, 'available', 'economy class', 3);
+    
+INSERT INTO seats VALUES
+    (30 , 10, 'available', 'economy class', 3);
     
 INSERT INTO seats VALUES    
-    ('4.1', 'available', 'first class', 4);
+    (31, 1, 'available', 'first class', 4);
     
 INSERT INTO seats VALUES
-    ('4.2', 'available', 'first class', 4);
+    (32, 2, 'available', 'first class', 4);
     
 INSERT INTO seats VALUES
-    ('4.3', 'available', 'first class', 4);
+    (33, 3, 'available', 'first class', 4);
     
 INSERT INTO seats VALUES
-    ('4.4', 'available', 'business class', 4);
+    (34, 4, 'available', 'business class', 4);
     
 INSERT INTO seats VALUES
-    ('4.5', 'available', 'business class', 4);
+    (35, 5, 'available', 'business class', 4);
     
 INSERT INTO seats VALUES
-    ('4.6', 'available', 'business class', 4);
+    (36, 6, 'available', 'business class', 4);
     
 INSERT INTO seats VALUES
-    ('4.7', 'available', 'economy class', 4);
+    (37, 7, 'available', 'economy class', 4);
     
 INSERT INTO seats VALUES
-    ('4.8', 'available', 'economy class', 4);
+    (38, 8, 'available', 'economy class', 4);
     
 INSERT INTO seats VALUES
-    ('4.9', 'available', 'economy class', 4);
+    (39, 9, 'available', 'economy class', 4);
     
 INSERT INTO seats VALUES
-    ('4.10', 'available', 'economy class', 4);
+    (40, 10, 'available', 'economy class', 4);
     
 INSERT INTO seats VALUES
-    ('5.1', 'available', 'first class', 5);
+    (41, 1, 'available', 'first class', 5);
     
 INSERT INTO seats VALUES
-    ('5.2', 'reserved', 'first class', 5);
+    (42, 2, 'reserved', 'first class', 5);
     
 INSERT INTO seats VALUES
-    ('5.3', 'available', 'first class', 5);
+    (43, 3, 'available', 'first class', 5);
     
 INSERT INTO seats VALUES
-    ('5.4', 'available', 'business class', 5);
+    (44, 4, 'available', 'business class', 5);
     
 INSERT INTO seats VALUES
-    ('5.5', 'available', 'business class', 5);
+    (45, 5, 'available', 'business class', 5);
     
 INSERT INTO seats VALUES
-    ('5.6', 'available', 'business class', 5);
+    (46, 6, 'available', 'business class', 5);
 
 INSERT INTO seats VALUES
-    ('5.7', 'available', 'economy class', 5);
+    (47, 7, 'available', 'economy class', 5);
     
 INSERT INTO seats VALUES
-    ('5.8', 'available', 'economy class', 5);
+    (48, 8, 'available', 'economy class', 5);
 
 INSERT INTO seats VALUES
-    ('5.9', 'available', 'economy class', 5);
+    (49, 9, 'available', 'economy class', 5);
 
 INSERT INTO seats VALUES
-    ('5.10', 'available', 'economy class', 5);
+    (50, 10, 'available', 'economy class', 5);
 
 INSERT INTO seats VALUES    
-    ('6.1', 'available', 'first class', 6);
+    (51, 1, 'available', 'first class', 6);
 
 INSERT INTO seats VALUES
-    ('6.2', 'unavailable', 'business class', 6);
+    (52, 2, 'available', 'business class', 6);
     
 INSERT INTO seats VALUES
-    ('6.3', 'available', 'economy class', 6);
+    (53, 3, 'available', 'economy class', 6);
     
 INSERT INTO seats VALUES    
-    ('7.1', 'available', 'first class', 7);
+    (54, 1, 'available', 'first class', 7);
 
 INSERT INTO seats VALUES
-    ('7.2', 'reserved', 'economy class', 7);
+    (55, 2, 'reserved', 'economy class', 7);
     
 INSERT INTO seats VALUES
-    ('7.3', 'available', 'economy class', 7);
+    (56, 3, 'available', 'economy class', 7);
     
 INSERT INTO seats VALUES    
-    ('8.1', 'available', 'first class', 8);
+    (57, 1, 'available', 'first class', 8);
 
 INSERT INTO seats VALUES
-    ('8.2', 'unavailable', 'business class', 8);
+    (58, 2, 'available', 'business class', 8);
     
 INSERT INTO seats VALUES
-    ('8.3', 'available', 'economy class', 8);
+    (59, 3, 'available', 'economy class', 8);
     
 INSERT INTO seats VALUES    
-    ('9.1', 'available', 'first class', 9);
+    (60, 1, 'available', 'first class', 9);
 
 INSERT INTO seats VALUES
-    ('9.2', 'available', 'economy class', 9);
+    (61, 2, 'available', 'economy class', 9);
     
 INSERT INTO seats VALUES
-    ('9.3', 'available', 'economy class', 9);
+    (62, 3, 'available', 'economy class', 9);
   
 INSERT INTO seats VALUES  
-    ('10.1', 'available', 'first class', 10);
+    (63, 1, 'available', 'first class', 10);
     
 INSERT INTO seats VALUES
-    ('10.2', 'available', 'first class', 10);
+    (64, 2, 'available', 'first class', 10);
     
 INSERT INTO seats VALUES
-    ('10.3', 'available', 'first class', 10);
+    (65, 3, 'available', 'first class', 10);
 
+/* trzeba jeszcze przerobić
 INSERT INTO seats VALUES
     ('11.1', 'available', 'first class', 11);
     
@@ -546,6 +544,9 @@ INSERT INTO seats VALUES
     
 INSERT INTO seats VALUES
     ('21.3', 'available', 'economy class', 21);
+*/
+
+
 
 --passengers
 
@@ -585,53 +586,49 @@ INSERT INTO passengers VALUES
 -- reservations
 
 INSERT INTO reservations VALUES
-    (1, 'waiting for approval', 156.32, TO_DATE('06/12/2020', 'DD/MM/YYYY'), TO_DATE('09/12/2020', 'DD/MM/YYYY'), '5.2', 5);
+    (1, 'waiting for approval', 156.32, TO_DATE('06/12/2020', 'DD/MM/YYYY'), 42, 5);
     
 INSERT INTO reservations VALUES
-    (2, 'waiting for approval', 225.5, TO_DATE('01/12/2020', 'DD/MM/YYYY'), TO_DATE('05/12/2020', 'DD/MM/YYYY'), '7.2', 7);
+    (2, 'waiting for approval', 225.5, TO_DATE('01/12/2020', 'DD/MM/YYYY'), 56, 7);
     
 INSERT INTO reservations VALUES
-    (3, 'waiting for approval', 89.75, TO_DATE('03/12/2020', 'DD/MM/YYYY'), TO_DATE('05/12/2020', 'DD/MM/YYYY'), '1.5', 8);
+    (3, 'waiting for approval', 89.75, TO_DATE('03/12/2020', 'DD/MM/YYYY'), 5 , 8);
     
 INSERT INTO reservations VALUES
-    (4, 'waiting for approval', 156.32, TO_DATE('02/12/2020', 'DD/MM/YYYY'), TO_DATE('08/12/2020', 'DD/MM/YYYY'), '1.8', 9);
+    (4, 'waiting for approval', 156.32, TO_DATE('02/12/2020', 'DD/MM/YYYY'), 8, 9);
     
 INSERT INTO reservations VALUES
-    (5, 'waiting for approval', 225.5, TO_DATE('01/12/2020', 'DD/MM/YYYY'), TO_DATE('05/12/2020', 'DD/MM/YYYY'), '3.2', 1);
+    (5, 'waiting for approval', 225.5, TO_DATE('01/12/2020', 'DD/MM/YYYY'), 22, 1);
     
 INSERT INTO reservations VALUES
-    (6, 'waiting for approval', 89.75, TO_DATE('03/12/2020', 'DD/MM/YYYY'), TO_DATE('05/12/2020', 'DD/MM/YYYY'), '15.2', 6);
+    (6, 'waiting for approval', 89.75, TO_DATE('03/12/2020', 'DD/MM/YYYY'), 15, 6);
     
 INSERT INTO reservations VALUES
-    (7, 'approved', 156.32, TO_DATE('17/12/2020', 'DD/MM/YYYY'), NULL, '1.10', 2);
+    (7, 'approved', 156.32, TO_DATE('17/12/2020', 'DD/MM/YYYY'), 10, 2);
     
 INSERT INTO reservations VALUES
-    (8, 'approved', 225.5, TO_DATE('15/12/2020', 'DD/MM/YYYY'), NULL, '6.2', 4);
+    (8, 'approved', 225.5, TO_DATE('15/12/2020', 'DD/MM/YYYY'), 52, 4);
     
 INSERT INTO reservations VALUES
-    (9, 'approved', 45.9, TO_DATE('13/12/2020', 'DD/MM/YYYY'), NULL, '8.2', 10);
+    (9, 'approved', 45.9, TO_DATE('13/12/2020', 'DD/MM/YYYY'), 58, 10);
     
 INSERT INTO reservations VALUES
-    (10, 'approved', 199.52, TO_DATE('16/12/2020', 'DD/MM/YYYY'), NULL, '2.7', 9);
+    (10, 'approved', 199.52, TO_DATE('16/12/2020', 'DD/MM/YYYY'), 4, 9);
     
 INSERT INTO reservations VALUES
-    (11, 'cancelled', 127.5, TO_DATE('05/12/2020', 'DD/MM/YYYY'), NULL, '7.1', 8);
+    (11, 'cancelled', 127.5, TO_DATE('05/12/2020', 'DD/MM/YYYY'), 17, 8);
     
 INSERT INTO reservations VALUES
-    (12, 'cancelled', 300.0, TO_DATE('09/12/2020', 'DD/MM/YYYY'), NULL, '14.2', 5);
-	
---new ones
-	
+    (12, 'cancelled', 300.0, TO_DATE('09/12/2020', 'DD/MM/YYYY'), 14, 5);
+
 INSERT INTO reservations VALUES
-    (13, 'cancelled', 122.0, TO_DATE('06/11/2020', 'DD/MM/YYYY'), TO_DATE('09/12/2020', 'DD/MM/YYYY'), '5.2', 9);
+    (13, 'cancelled', 122.0, TO_DATE('06/11/2020', 'DD/MM/YYYY'), 25, 9);
 	
 INSERT INTO reservations VALUES
-    (14, 'approved', 78.20, TO_DATE('30/12/2020', 'DD/MM/YYYY'), TO_DATE('09/01/2021', 'DD/MM/YYYY'), '21.3', 5);
+    (14, 'approved', 78.20, TO_DATE('30/12/2020', 'DD/MM/YYYY'), 21, 5);
+
 
 -- discounts
-
-
-SELECT * FROM discounts;
 
 INSERT INTO discounts VALUES
     (1, 10.0, 'gold client', 5);
@@ -640,10 +637,10 @@ INSERT INTO discounts VALUES
     (2, 10.0, 'gold client', 6);
     
 INSERT INTO discounts VALUES
-    (3, 5.0, 'silver discount', 3);
+    (3, 5.0, 'silver client', 3);
     
 INSERT INTO discounts VALUES
-    (4, 5.0, 'silver discount', 2); 
+    (4, 5.0, 'silver client', 2); 
      
 INSERT INTO discounts VALUES
     (5, 1.0, 'happy hours', 3);
@@ -663,6 +660,5 @@ INSERT INTO discounts VALUES
 INSERT INTO discounts VALUES
     (10, 1.0, 'happy hours', 1);
 	
---new 
 INSERT INTO discounts VALUES
     (11, 10.0, 'happy hours', 5);
