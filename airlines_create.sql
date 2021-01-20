@@ -84,6 +84,7 @@ CREATE TABLE passengers (
     
     CONSTRAINT passenger_PK PRIMARY KEY (passenger_id),
     CONSTRAINT check_passenger_type CHECK (passenger_type IN ('Gold', 'Silver', 'Normal'))
+    CONSTRAINT check_email_uniqueness UNIQUE (email_address)
 );
 
 
