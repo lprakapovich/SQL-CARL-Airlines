@@ -34,10 +34,8 @@ v_default_type  passengers.passenger_type%TYPE := 'Normal';
 
         BEGIN
 
-        select max(passenger_id) into v_passenger_number from passengers;
-        v_passenger_number := v_passenger_number + 1;
-        INSERT INTO passengers VALUES
-        (v_passenger_number, firstname, lastname, email, phone, city, street, postalcode, 'Normal');
+         INSERT INTO passengers VALUES
+        (passenger_id_sequence.NEXTVAL, firstname, lastname, email, phone, city, street, postalcode, 'Normal');
 
         EXCEPTION
             WHEN DUP_VAL_ON_INDEX THEN
