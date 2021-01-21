@@ -11,6 +11,7 @@ RETURN v_passenger_number;
 END;
 
 
+
 -- number of reservations for a given id, used to check if deletion is allowed
 create or replace FUNCTION passenger_reservations_number(
                         p_id IN passengers.passenger_id%TYPE)

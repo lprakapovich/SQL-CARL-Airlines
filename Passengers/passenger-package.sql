@@ -110,7 +110,13 @@ v_default_type  passengers.passenger_type%TYPE := 'Normal';
         SET passenger_type = p_new_type
         WHERE passenger_id = p_passenger_id;
 
+        IF SQL%NOTFOUND THEN RAISE NO_DATA_FOUND;
+        END IF;
+
     EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+        dbms_output.put_line('Invalid passenger id');
+
         WHEN CHECK_CONSTRAINT_VIOLATED THEN
         DBMS_OUTPUT.PUT_LINE('INSERT failed due to check constraint violation on passenger type');
     END;
