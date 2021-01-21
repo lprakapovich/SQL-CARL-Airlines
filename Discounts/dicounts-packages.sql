@@ -6,7 +6,10 @@ CREATE OR REPLACE PACKAGE discounts_pkg IS
 	FUNCTION calc_total_discount_percent (p_reservation_id reservations.reservation_id%TYPE)
         RETURN NUMBER;
         
-    FUNCTION calc_ticket_price(p_reservation_id   reservations.reservation_id%TYPE)
+    FUNCTION calc_ticket_price (p_reservation_id   reservations.reservation_id%TYPE)
+        RETURN NUMBER;
+        
+    FUNCTION calc_total_amount_of_money_from_discounts (p_passenger passengers.passenger_id%TYPE)
         RETURN NUMBER;
 
 END discounts_pkg;
@@ -72,4 +75,7 @@ SELECT reservation_id, discounts_pkg.calc_total_discount_percent(reservation_id)
 
 SELECT reservation_id, price, discounts_pkg.calc_total_discount_percent(reservation_id) || '%' AS TOTAL_DISCOUNT, 
         discounts_pkg.calc_ticket_price(reservation_id) AS TICKET_PRICE
+    FROM reservations;
+
+SELECT passenger_id, discounts_pkg.calc_total_amount_of_money_from_discounts(passenger_id) || '$' AS TOTAL_DISCOUNT
     FROM reservations;
