@@ -1,0 +1,12 @@
+alter table flights add num_seats INT;
+alter table airports add action VARCHAR2(25);
+
+
+
+
+ALTER TABLE reservations
+DROP CONSTRAINT check_state;
+
+ALTER TABLE reservations
+ADD CONSTRAINT check_state
+  CHECK (state IN ('waiting for approval', 'approved', 'cancelled', 'postponed'));

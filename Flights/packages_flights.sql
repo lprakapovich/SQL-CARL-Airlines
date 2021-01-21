@@ -54,6 +54,30 @@ BEGIN
 END;
 
 
+
+CREATE OR REPLACE TRIGGER update_flight_departure_time 
+    AFTER UPDATE OF departure_time ON flights 
+    FOR EACH ROW 
+    DECLARE
+    BEGIN 
+    
+    FOR reservation_record IN (SELECT * FROM reservations r 
+        JOIN seats s ON s.seat_id = r.seat_id
+        WHERE s.flight_id = (:NEW.flight_id))
+    LOOP 
+    IF :NEW.departure_time > :OLD.departure_time
+    THEN
+        UPDATE reservations 
+        SET state = 'postponed'
+        WHERE reservation_id = reservation_record.reservation_id;
+        
+        dbms_output.put_line(reservation_record.reservation_id);
+        END IF;
+    END LOOP;
+    END;
+    
+
+
 -- some tests
 
 INSERT INTO flights VALUES(23, 1.25, TO_DATE('24/12/2020 21:30', 'DD/MM/YYYY HH24:MI'),
