@@ -32,3 +32,29 @@ BEGIN
 END;
 
 END flights_pkg;
+
+
+
+
+-- trigger
+
+CREATE OR REPLACE TRIGGER generate_seats_after_flight_trg
+AFTER INSERT ON flights
+FOR EACH ROW
+DECLARE
+    v_iter INT := 1;
+BEGIN
+
+    WHILE (v_iter <= :NEW.num_seats)
+    LOOP
+        INSERT INTO seats (seat_id, num_in_plane, availability, seat_class, flight_id)
+        VALUES(seat_id_sequence.NEXTVAL, v_iter, 'available', 'economy class', :NEW.flight_id);
+        v_iter := v_iter + 1;
+    END LOOP;
+END;
+
+
+-- some tests
+
+INSERT INTO flights VALUES(23, 1.25, TO_DATE('24/12/2020 21:30', 'DD/MM/YYYY HH24:MI'),
+TO_DATE('24/12/2020 22:45', 'DD/MM/YYYY HH24:MI'), 555, 'MAD', 'LYS', 25);
